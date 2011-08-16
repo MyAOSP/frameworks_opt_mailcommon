@@ -56,7 +56,7 @@ public class MultiAdapterSpinner extends FrameLayout
     protected MergedSpinnerAdapter mAdapter;
     protected ListPopupWindow mPopup;
 
-    private int mSelectedPosition;
+    private int mSelectedPosition = -1;
 
     /**
      * A basic adapter with some callbacks added so clients can be involved in spinner behavior.
