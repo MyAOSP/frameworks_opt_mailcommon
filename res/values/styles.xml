@@ -98,24 +98,26 @@
     <style name="attachment_container">
         <item name="android:background">@drawable/attachment_bg_holo</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_height">48dip</item>
     </style>
 
     <style name="attachment_name">
-        <item name="android:id">@id/attachment_name</item>
-        <item name="android:paddingLeft">5dip</item>
+        <item name="android:layout_marginLeft">16dip</item>
         <item name="android:maxLines">1</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">#ff000000</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+    </style>
+
+    <style name="attachment_size" parent="@style/attachment_name">
+        <item name="android:textColor">#555555</item>
     </style>
 
     <style name="attachment_thumbnail">
-        <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:paddingLeft">5dip</item>
-        <item name="android:layout_width">32dip</item>
-        <item name="android:layout_height">32dip</item>
+        <item name="android:layout_marginLeft">8dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>
