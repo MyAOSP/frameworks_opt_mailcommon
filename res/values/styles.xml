@@ -78,4 +78,44 @@
         <item name="android:minHeight">42dip</item>
     </style>
 
+    <style name="ComposeButtonColumn">
+        <item name="android:minWidth">100dip</item>
+    </style>
+
+    <style name="ComposeButton">
+        <item name="android:padding">0dip</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_gravity">center_vertical|left</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#777777</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="attachment_container">
+        <item name="android:background">@drawable/attachment_bg_holo</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="attachment_name">
+        <item name="android:id">@id/attachment_name</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ff000000</item>
+    </style>
+
+    <style name="attachment_thumbnail">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:layout_width">32dip</item>
+        <item name="android:layout_height">32dip</item>
+    </style>
+
 </resources>
