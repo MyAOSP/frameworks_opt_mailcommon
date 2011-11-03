@@ -67,19 +67,15 @@
     </style>
 
     <style name="ComposeBodyStyle">
-        <item name="android:minHeight">48dip</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:inputType">textLongMessage|textMultiLine|textAutoCorrect|textCapSentences</item>
         <item name="android:imeOptions">flagNoExtractUi|actionDone|flagNoEnterAction</item>
         <item name="android:textColorHint">@color/compose_label_text</item>
-    </style>
-
-    <style name="LargeComposeAreaBody" parent="@style/ComposeBodyStyle">
         <item name="android:background">@null</item>
         <item name="android:minHeight">42dip</item>
-        <item name="android:layout_gravity">center_vertical</item>
     </style>
 
 </resources>
