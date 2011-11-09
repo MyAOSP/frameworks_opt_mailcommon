@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 -->
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true"
-          android:drawable="@drawable/list_pressed_holo" />
-    <item android:state_focused="true"
-          android:drawable="@drawable/list_focused_holo" />
-    <item android:state_selected="true"
-          android:drawable="@drawable/list_selected_holo" />
-    <item android:drawable="@drawable/list_unread_holo" />
-</selector>
+<resources>
+<!-- Conversation List Item Colors -->
+    <color name="subject_text_color_unread">#333333</color>
+    <color name="snippet_text_color_unread">#555555</color>
+    <color name="senders_text_color_unread">#333333</color>
+    <color name="subject_text_color_read">#444444</color>
+    <color name="snippet_text_color_read">#666666</color>
+    <color name="senders_text_color_read">#444444</color>
+</resources>
