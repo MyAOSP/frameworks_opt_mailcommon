@@ -78,4 +78,10 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="unreadCountActionBar" parent="unreadCount">
+    </style>
+
+    <style name="AccountSwitchSpinnerItem">
+        <item name="android:layout_width">332dip</item>
+    </style>
 </resources>
