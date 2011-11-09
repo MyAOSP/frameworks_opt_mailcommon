@@ -18,7 +18,6 @@
 package com.android.mailcommon;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -26,8 +25,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.ContactsContract;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -56,20 +53,9 @@ import java.nio.charset.Charset;
  * <li>res/values/webview_context_menu_strings.xml</li>
  * </ul>
  */
-public abstract class WebViewContextMenu implements OnCreateContextMenuListener {
+public abstract class WebViewContextMenu implements OnCreateContextMenuListener,
+        MenuItem.OnMenuItemClickListener {
 
-    // Message flag meaning that we are grabbing the url.
-    private static final int FOCUS_NODE_HREF = 1;
-    // Message flag meaning that the url is to be used for the title header.
-    private static final int HEADER_FLAG     = Integer.MIN_VALUE;
-    private static final int EXECUTE_FALSE   = Integer.MIN_VALUE;
-    // Flag telling us whether we should perform the action (open/copy) as
-    // soon as we receive the title message, and if so, which action to take.
-    private int mExecute = EXECUTE_FALSE;
-
-    // Title for the context menu.  Store a pointer so we can access its
-    // title when the user selects an option.
-    private TextView mTitleView = null;
     private Activity mActivity;
 
     protected static enum MenuType {
@@ -97,36 +83,6 @@ public abstract class WebViewContextMenu implements OnCreateContextMenuListener 
         this.mActivity = host;
     }
 
-    /**
-     * Used to send UI work back to the UI thread
-     */
-    private final Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case FOCUS_NODE_HREF:
-                    String url = (String) msg.getData().get("url");
-                    if (url == null || url.length() == 0) {
-                        break;
-                    }
-                    switch (msg.arg1) {
-                        case HEADER_FLAG:
-                            if (EXECUTE_FALSE == mExecute) {
-                                mTitleView.setText(url);
-                                break;
-                            }
-                            msg.arg1 = mExecute;
-                            onContextItemSelectedInternal(msg.arg1, url);
-                            break;
-                        default:
-                    }
-                    break;
-                default:
-                    super.handleMessage(msg);
-            }
-        }
-    };
-
     // For our copy menu items.
     private class Copy implements MenuItem.OnMenuItemClickListener {
         private final CharSequence mText;
@@ -135,8 +91,24 @@ public abstract class WebViewContextMenu implements OnCreateContextMenuListener 
             mText = text;
         }
 
+        @Override
         public boolean onMenuItemClick(MenuItem item) {
             copy(mText);
+            return true;
+        }
+    }
+
+    // For our share menu items.
+    private class Share implements MenuItem.OnMenuItemClickListener {
+        private final String mUri;
+
+        public Share(String text) {
+            mUri = text;
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            shareLink(mUri);
             return true;
         }
     }
@@ -196,6 +168,14 @@ public abstract class WebViewContextMenu implements OnCreateContextMenuListener 
         // 1251210 is fixed.
         inflater.inflate(getMenuResourceId(), menu);
 
+        // Initially make set the menu item handler this WebViewContextMenu, which will default to
+        // calling the non-abstract subclass's implementation.
+        for (int i = 0; i < menu.size(); i++) {
+            final MenuItem menuItem = menu.getItem(i);
+            menuItem.setOnMenuItemClickListener(this);
+        }
+
+
         // Show the correct menu group
         String extra = result.getExtra();
         menu.setGroupVisible(getMenuGroupResId(MenuGroupType.PHONE_GROUP),
@@ -222,22 +202,31 @@ public abstract class WebViewContextMenu implements OnCreateContextMenuListener 
 
                 menu.setHeaderTitle(decodedPhoneExtra);
                 // Dial
-                menu.findItem(getMenuResIdForMenuType(MenuType.DIAL_MENU)).setIntent(
-                        new Intent(Intent.ACTION_VIEW, Uri
-                                .parse(WebView.SCHEME_TEL + extra)));
+                final MenuItem dialMenuItem =
+                        menu.findItem(getMenuResIdForMenuType(MenuType.DIAL_MENU));
+                // remove the on click listener
+                dialMenuItem.setOnMenuItemClickListener(null);
+                dialMenuItem.setIntent(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(WebView.SCHEME_TEL + extra)));
 
                 // Send SMS
-                menu.findItem(getMenuResIdForMenuType(MenuType.SMS_MENU)).setIntent(
-                        new Intent(Intent.ACTION_SENDTO, Uri
-                                .parse("smsto:" + extra)));
+                final MenuItem sendSmsMenuItem =
+                        menu.findItem(getMenuResIdForMenuType(MenuType.SMS_MENU));
+                // remove the on click listener
+                sendSmsMenuItem.setOnMenuItemClickListener(null);
+                sendSmsMenuItem.setIntent(new Intent(Intent.ACTION_SENDTO,
+                        Uri.parse("smsto:" + extra)));
 
                 // Add to contacts
-                Intent addIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                final Intent addIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
                 addIntent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
 
                 addIntent.putExtra(ContactsContract.Intents.Insert.PHONE, decodedPhoneExtra);
-                menu.findItem(getMenuResIdForMenuType(MenuType.ADD_CONTACT_MENU)).
-                        setIntent(addIntent);
+                final MenuItem addToContactsMenuItem =
+                        menu.findItem(getMenuResIdForMenuType(MenuType.ADD_CONTACT_MENU));
+                // remove the on click listener
+                addToContactsMenuItem.setOnMenuItemClickListener(null);
+                addToContactsMenuItem.setIntent(addIntent);
 
                 // Copy
                 menu.findItem(getMenuResIdForMenuType(MenuType.COPY_PHONE_MENU)).
@@ -262,78 +251,54 @@ public abstract class WebViewContextMenu implements OnCreateContextMenuListener 
                 catch (UnsupportedEncodingException ignore) {
                     // Should never happen; default charset is UTF-8
                 }
-                menu.findItem(getMenuResIdForMenuType(MenuType.MAP_MENU)).setIntent(
-                        new Intent(Intent.ACTION_VIEW, Uri
-                                .parse(WebView.SCHEME_GEO + geoExtra)));
+                final MenuItem viewMapMenuItem =
+                        menu.findItem(getMenuResIdForMenuType(MenuType.MAP_MENU));
+                // remove the on click listener
+                viewMapMenuItem.setOnMenuItemClickListener(null);
+                viewMapMenuItem.setIntent(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(WebView.SCHEME_GEO + geoExtra)));
                 menu.findItem(getMenuResIdForMenuType(MenuType.COPY_GEO_MENU)).
                         setOnMenuItemClickListener(new Copy(extra));
                 break;
 
             case WebView.HitTestResult.SRC_ANCHOR_TYPE:
             case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE:
-                mTitleView = (TextView) LayoutInflater.from(mActivity)
-                        .inflate(getTitleViewLayoutResId(MenuType.SHARE_LINK_MENU), null);
-                menu.setHeaderView(mTitleView);
-
-                menu.findItem(getMenuResIdForMenuType(MenuType.SHARE_LINK_MENU)).setVisible(
-                        showShareLinkMenuItem());
                 // FIXME: Make this look like the normal menu header
                 // We cannot use the normal menu header because we need to
                 // edit the ContextMenu after it has been created.
-                Message headerMessage = mHandler.obtainMessage(
-                        FOCUS_NODE_HREF, HEADER_FLAG, 0);
-                webview.requestFocusNodeHref(headerMessage);
+                final TextView titleView = (TextView) LayoutInflater.from(mActivity)
+                        .inflate(getTitleViewLayoutResId(MenuType.SHARE_LINK_MENU), null);
+                menu.setHeaderView(titleView);
+
+                menu.findItem(getMenuResIdForMenuType(MenuType.SHARE_LINK_MENU)).setVisible(
+                        showShareLinkMenuItem());
+
+                // The documentation for WebView indicates that if the HitTestResult is
+                // SRC_ANCHOR_TYPE or the url would be specified in the extra.  We don't need to
+                // call requestFocusNodeHref().  If we wanted to handle UNKNOWN HitTestResults, we
+                // would.  With this knowledge, we can just set the title
+                titleView.setText(extra);
+
+                menu.findItem(getMenuResIdForMenuType(MenuType.COPY_LINK_MENU)).
+                        setOnMenuItemClickListener(new Copy(extra));
+
+                final MenuItem openLinkMenuItem =
+                        menu.findItem(getMenuResIdForMenuType(MenuType.OPEN_MENU));
+                // remove the on click listener
+                openLinkMenuItem.setOnMenuItemClickListener(null);
+                openLinkMenuItem.setIntent(new Intent(Intent.ACTION_VIEW, Uri.parse(extra)));
+
+                menu.findItem(getMenuResIdForMenuType(MenuType.SHARE_LINK_MENU)).
+                        setOnMenuItemClickListener(new Share(extra));
                 break;
             default:
                 break;
         }
     }
 
-    public boolean onContextItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        final MenuType menuType = getMenuTypeFromResId(id);
-        switch(menuType) {
-            case OPEN_MENU:
-            case COPY_LINK_MENU:
-            case SHARE_LINK_MENU:
-                String text = mTitleView.getText().toString();
-                // If we have not already received the title, make note that
-                // when we get it we should immediately perform the open or
-                // copy.
-                if (null == text || text.length() == 0) {
-                    mExecute = id;
-                } else {
-                    onContextItemSelectedInternal(id, text);
-                }
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    // This is only to be used from the context menu.
-    private void onContextItemSelectedInternal(int id, String url) {
-        mTitleView = null;
-        mExecute = EXECUTE_FALSE;
-        final MenuType menuType = getMenuTypeFromResId(id);
-        switch (menuType) {
-            case OPEN_MENU:
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                try {
-                    mActivity.startActivity(i);
-                } catch (ActivityNotFoundException ex) {
-                    // ignore the error
-                }
-                break;
-            case COPY_LINK_MENU:
-                copy(url);
-                break;
-            case SHARE_LINK_MENU:
-                shareLink(url);
-                break;
-            default:
-                break;
-        }
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return onMenuItemSelected(item);
     }
 
     /**
@@ -375,4 +340,10 @@ public abstract class WebViewContextMenu implements OnCreateContextMenuListener 
      * Returns the resource id for the web view context menu
      */
     abstract protected int getMenuResourceId();
+
+
+    /**
+     * Called when a menu item is not handled by the context menu.
+     */
+    abstract protected boolean onMenuItemSelected(MenuItem menuItem);
 }

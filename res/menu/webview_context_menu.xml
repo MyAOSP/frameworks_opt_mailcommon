@@ -48,6 +48,8 @@
             android:title="@string/contextmenu_copylink"/>
         <item android:id="@+id/share_link_context_menu_id"
             android:title="@string/contextmenu_sharelink"/>
+    </group>
+    <group android:id="@+id/HELP_FEEDBACK_GROUP">
         <item android:id="@+id/help_info_menu_item"
             android:icon="@android:drawable/ic_menu_help"
             android:title="@string/contextmenu_help" />
