@@ -19,4 +19,5 @@
 -->
 <resources>
     <dimen name="senders_font_size">18sp</dimen>
+    <dimen name="account_dropdown_dropdownwidth">496dip</dimen>
 </resources>
