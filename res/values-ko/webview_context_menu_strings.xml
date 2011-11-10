@@ -20,7 +20,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="choosertitle_sharevia" msgid="8695355711548636633">"다음 활동으로 링크 공유"</string>
+    <string name="choosertitle_sharevia" msgid="8695355711548636633">"링크 공유 방법:"</string>
     <string name="contextmenu_openlink" msgid="9094161900484295513">"브라우저에서 열기"</string>
     <string name="contextmenu_copy" msgid="4258345137871253670">"복사"</string>
     <string name="contextmenu_copylink" msgid="7835182758054080051">"링크 URL 복사"</string>
