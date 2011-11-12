@@ -126,15 +126,18 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginLeft">8dip</item>
-        <item name="android:textColor">#bbbbbb</item>
-        <!-- Use dp rather than sp for size since starts large and must not get too large -->
-        <item name="android:textSize">36dp</item>
         <item name="android:singleLine">true</item>
         <item name="android:includeFontPadding">false</item>
+        <!-- Use dp rather than sp for size since starts large and must not get too large -->
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">#bcbcbc</item>
     </style>
 
     <style name="unreadCountActionBar" parent="unreadCount">
         <item name="android:layout_marginRight">8dp</item>
+        <item name="android:textColor">#bbbbbb</item>
+        <!-- Use dp rather than sp for size since starts large and must not get too large -->
+        <item name="android:textSize">36dp</item>
     </style>
 
     <style name="AccountSwitchSpinnerItem">
