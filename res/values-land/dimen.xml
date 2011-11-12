@@ -18,11 +18,5 @@
  */
 -->
 <resources>
-    <dimen name="wide_senders_font_size">16sp</dimen>
-    <dimen name="wide_subject_font_size">16sp</dimen>
-    <dimen name="senders_font_size">18sp</dimen>
-    <dimen name="subject_font_size">14sp</dimen>
-    <dimen name="date_font_size">12sp</dimen>
-    <dimen name="account_dropdown_dropdownwidth">274dip</dimen>
-    <dimen name="actionbar_subject_padding_right">8dp</dimen>
+    <dimen name="actionbar_subject_padding_right">0dp</dimen>
 </resources>
