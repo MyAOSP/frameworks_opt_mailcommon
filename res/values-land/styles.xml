@@ -37,7 +37,4 @@
         <item name="android:minHeight">38dip</item>
         <item name="android:paddingTop">0dip</item>
     </style>
-
-    <style name="unreadCountActionBar" parent="unreadCount">
-    </style>
 </resources>
