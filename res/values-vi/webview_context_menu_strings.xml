@@ -21,7 +21,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="choosertitle_sharevia" msgid="8695355711548636633">"Chia sẻ qua"</string>
-    <string name="contextmenu_openlink" msgid="9094161900484295513">"Mở trong Trình duyệt"</string>
+    <string name="contextmenu_openlink" msgid="9094161900484295513">"Mở trong Trình duyệt"</string>
     <string name="contextmenu_copy" msgid="4258345137871253670">"Sao chép"</string>
     <string name="contextmenu_copylink" msgid="7835182758054080051">"Sao chép URL liên kết"</string>
     <string name="contextmenu_dial_dot" msgid="1698333388313807445">"Quay số…"</string>

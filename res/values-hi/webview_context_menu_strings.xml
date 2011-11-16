@@ -26,7 +26,7 @@
     <string name="contextmenu_copylink" msgid="7835182758054080051">"लिंक URL की प्रतिलिपि बनाएं"</string>
     <string name="contextmenu_dial_dot" msgid="1698333388313807445">"डायल करें…"</string>
     <string name="contextmenu_sms_dot" msgid="8870563605004576194">"SMS…"</string>
-    <string name="contextmenu_add_contact" msgid="2720492380383163909">"संपर्क जोड़ें"</string>
+    <string name="contextmenu_add_contact" msgid="2720492380383163909">"संपर्क जोड़ें"</string>
     <string name="contextmenu_send_mail" msgid="1599521001277247614">"ईमेल भेजें"</string>
     <string name="contextmenu_map" msgid="827724648429662327">"मानचित्र"</string>
     <string name="contextmenu_sharelink" msgid="3043834627204106149">"लिंक साझा करें"</string>
