@@ -103,11 +103,13 @@
 
     <style name="attachment_name">
         <item name="android:layout_marginLeft">16dip</item>
+        <item name="android:layout_marginRight">32dip</item>
         <item name="android:maxLines">1</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="attachment_size" parent="@style/attachment_name">
