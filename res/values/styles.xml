@@ -130,8 +130,7 @@
         <item name="android:layout_marginLeft">8dip</item>
         <item name="android:singleLine">true</item>
         <item name="android:includeFontPadding">false</item>
-        <!-- Use dp rather than sp for size since starts large and must not get too large -->
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">#bcbcbc</item>
     </style>
 
@@ -144,5 +143,21 @@
 
     <style name="AccountSwitchSpinnerItem">
         <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="AccountSpinnerDropdownTextPrimary">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+    <style name="AccountSpinnerDropdownTextSecondary">
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="AccountSpinnerAnchorTextPrimary" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+    </style>
+
+    <style name="AccountSpinnerAnchorTextSecondary" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle">
+        <item name="android:textColor">@color/actionbar_secondary</item>
     </style>
 </resources>
