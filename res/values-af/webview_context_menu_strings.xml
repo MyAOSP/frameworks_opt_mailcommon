@@ -20,7 +20,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="choosertitle_sharevia" msgid="8695355711548636633">"Deel met"</string>
+    <string name="choosertitle_sharevia" msgid="8695355711548636633">"Deel via"</string>
     <string name="contextmenu_openlink" msgid="9094161900484295513">"Maak oop in blaaier"</string>
     <string name="contextmenu_copy" msgid="4258345137871253670">"Kopieer"</string>
     <string name="contextmenu_copylink" msgid="7835182758054080051">"Kopieer skakel-URL"</string>
