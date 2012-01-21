@@ -79,7 +79,7 @@
     </style>
 
     <style name="AccountSwitchSpinnerItem">
-        <item name="android:layout_width">332dip</item>
+        <item name="android:layout_width">308dip</item>
     </style>
 
     <style name="AccountSpinnerAnchorTextPrimary" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
