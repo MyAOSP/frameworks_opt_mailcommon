@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
- * Copyright (C) 2011 Google Inc.
+ * Copyright (C) 2012 Google Inc.
  * Licensed to The Android Open Source Project.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,12 +18,7 @@
  */
 -->
 <resources>
-
-    <style name="AccountSwitchSpinnerItem">
-        <item name="android:layout_width">312dip</item>
-    </style>
-
     <style name="ComposeButtonColumn">
-        <item name="android:minWidth">76dip</item>
+        <item name="android:minWidth">100dip</item>
     </style>
 </resources>
