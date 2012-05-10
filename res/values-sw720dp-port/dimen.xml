@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
- * Copyright (C) 2012 Google Inc.
+ * Copyright (C) 2011 Google Inc.
  * Licensed to The Android Open Source Project.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,8 +17,7 @@
  * limitations under the License.
  */
 -->
+
 <resources>
-    <style name="ComposeButtonColumn">
-        <item name="android:minWidth">100dip</item>
-    </style>
+    <dimen name="spinner_frame_width">200dip</dimen>
 </resources>

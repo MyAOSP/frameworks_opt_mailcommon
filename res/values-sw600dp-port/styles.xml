@@ -26,4 +26,9 @@
     <style name="ComposeButtonColumn">
         <item name="android:minWidth">76dip</item>
     </style>
+
+    <style name="unreadCountActionBarTablet" parent="@style/unreadCountActionBar">
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
 </resources>
