@@ -18,8 +18,5 @@
  */
 -->
 <resources>
-    <style name="ComposeButtonColumn">
-        <item name="android:minWidth">100dip</item>
-    </style>
     <dimen name="spinner_frame_width">232dip</dimen>
 </resources>
