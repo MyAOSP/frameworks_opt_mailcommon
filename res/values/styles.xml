@@ -160,4 +160,12 @@
     <style name="AccountSpinnerAnchorTextSecondary" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle">
         <item name="android:textColor">@color/actionbar_secondary</item>
     </style>
+
+    <style name="NotificationPrimaryText">
+        <item name="android:textColor">#cccccc</item>
+    </style>
+
+    <style name="NotificationSecondaryText">
+    </style>
+
 </resources>
