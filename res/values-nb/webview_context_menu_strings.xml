@@ -29,7 +29,7 @@
     <string name="contextmenu_add_contact" msgid="2720492380383163909">"Legg til kontakt"</string>
     <string name="contextmenu_send_mail" msgid="1599521001277247614">"Send e-post"</string>
     <string name="contextmenu_map" msgid="827724648429662327">"Kart"</string>
-    <string name="contextmenu_sharelink" msgid="3043834627204106149">"Del kobling"</string>
+    <string name="contextmenu_sharelink" msgid="3043834627204106149">"Del link"</string>
     <string name="contextmenu_help" msgid="3599842914619249472">"Hjelp"</string>
     <string name="contextmenu_feedback" msgid="1118327808484223675">"Send tilbakemelding"</string>
 </resources>
