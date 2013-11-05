@@ -23,9 +23,9 @@
     <string name="choosertitle_sharevia" msgid="8695355711548636633">"مشاركة عبر"</string>
     <string name="contextmenu_openlink" msgid="9094161900484295513">"فتح في المتصفح"</string>
     <string name="contextmenu_copy" msgid="4258345137871253670">"نسخ"</string>
-    <string name="contextmenu_copylink" msgid="7835182758054080051">"نسخ رابط عنوان URL"</string>
+    <string name="contextmenu_copylink" msgid="7835182758054080051">"‏نسخ رابط عنوان URL"</string>
     <string name="contextmenu_dial_dot" msgid="1698333388313807445">"طلب..."</string>
-    <string name="contextmenu_sms_dot" msgid="8870563605004576194">"رسائل قصيرة SMS…"</string>
+    <string name="contextmenu_sms_dot" msgid="8870563605004576194">"‏رسائل قصيرة SMS…"</string>
     <string name="contextmenu_add_contact" msgid="2720492380383163909">"إضافة جهة اتصال"</string>
     <string name="contextmenu_send_mail" msgid="1599521001277247614">"إرسال رسالة إلكترونية"</string>
     <string name="contextmenu_map" msgid="827724648429662327">"خريطة"</string>

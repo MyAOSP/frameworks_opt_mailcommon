@@ -23,7 +23,7 @@
     <string name="choosertitle_sharevia" msgid="8695355711548636633">"اشتراک‌گذاری از طریق"</string>
     <string name="contextmenu_openlink" msgid="9094161900484295513">"باز کردن در مرورگر"</string>
     <string name="contextmenu_copy" msgid="4258345137871253670">"کپی"</string>
-    <string name="contextmenu_copylink" msgid="7835182758054080051">"کپی URL پیوند"</string>
+    <string name="contextmenu_copylink" msgid="7835182758054080051">"‏کپی URL پیوند"</string>
     <string name="contextmenu_dial_dot" msgid="1698333388313807445">"در حال شماره‌گیری..."</string>
     <string name="contextmenu_sms_dot" msgid="8870563605004576194">"پیامک..."</string>
     <string name="contextmenu_add_contact" msgid="2720492380383163909">"افزودن مخاطب"</string>
